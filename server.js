@@ -1,9 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var cfenv = require("cfenv");
-
-var appEnv = cfenv.getAppEnv();
 
 var port = 3000;
 
@@ -26,10 +23,4 @@ var applicationController = require("./controllers/burgers_controller");
 
 app.use("/", applicationController);
 
-if (appEnv.port) {
-    app.listen(appEnv.port, appEnv.bind, function () {
-        console.log("server starting on " + appEnv.url)
-    });
-} else {
-    app.listen(port);
-}
+app.listen(port);
